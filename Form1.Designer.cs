@@ -77,6 +77,7 @@
             this.tbOutput = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.btnApplyAll = new System.Windows.Forms.Button();
+            this.tbText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // imageList1
@@ -427,7 +428,7 @@
             this.pnlImages.AutoScroll = true;
             this.pnlImages.Location = new System.Drawing.Point(1212, 9);
             this.pnlImages.Name = "pnlImages";
-            this.pnlImages.Size = new System.Drawing.Size(1118, 878);
+            this.pnlImages.Size = new System.Drawing.Size(1118, 727);
             this.pnlImages.TabIndex = 43;
             // 
             // button4
@@ -477,11 +478,20 @@
             this.btnApplyAll.UseVisualStyleBackColor = true;
             this.btnApplyAll.Click += new System.EventHandler(this.btnApplyAll_Click);
             // 
+            // tbText
+            // 
+            this.tbText.Location = new System.Drawing.Point(1212, 752);
+            this.tbText.Multiline = true;
+            this.tbText.Name = "tbText";
+            this.tbText.Size = new System.Drawing.Size(1118, 121);
+            this.tbText.TabIndex = 47;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2342, 899);
+            this.Controls.Add(this.tbText);
             this.Controls.Add(this.btnApplyAll);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -587,5 +597,6 @@
         private TextBox tbOutput;
         private Button button5;
         private Button btnApplyAll;
+        private TextBox tbText;
     }
 }

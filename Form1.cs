@@ -99,6 +99,8 @@ namespace dataset_processor
                 }
                 Save();
             }
+            
+            pnlImages.Controls.Clear();
 
             var metadatastring = System.IO.File.ReadAllText(textBox1.Text + "metadata.jsonl");
 
@@ -174,6 +176,7 @@ namespace dataset_processor
             tbPose2.Text = current.pose2;
             tbView.Text = current.view;
             tbQuality.Text = current.quality;
+            tbText.Text = current.text;
         }
 
         private void Save()

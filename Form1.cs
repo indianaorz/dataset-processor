@@ -20,6 +20,7 @@ namespace dataset_processor
             textBox1.Text = "C:\\Users\\Lee\\FFCO\\ai\\datasets\\chao\\set\\";
         }
 
+
         public class DataRecord
         {
             public string file_name;
@@ -337,6 +338,44 @@ namespace dataset_processor
         private void label11_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var txt = "";
+
+            foreach (var data in m_metadata)
+            {
+                txt += data.text + "\n";
+            }
+            var directory = tbOutput.Text + "\\val";
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+            File.WriteAllText(directory + "\\val.txt", txt);
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
+
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                    button2_Click(sender, e);
+                    break;
+                case Keys.Up:
+                    button3_Click(sender, e);
+                    break;
+            }
         }
     }
 }

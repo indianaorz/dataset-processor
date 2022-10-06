@@ -78,6 +78,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.btnApplyAll = new System.Windows.Forms.Button();
             this.tbText = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // imageList1
@@ -100,8 +101,9 @@
             this.textBox1.Location = new System.Drawing.Point(12, 46);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(989, 31);
-            this.textBox1.TabIndex = 1;
+            this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbClass
             // 
@@ -109,6 +111,7 @@
             this.tbClass.Name = "tbClass";
             this.tbClass.Size = new System.Drawing.Size(422, 31);
             this.tbClass.TabIndex = 2;
+            this.tbClass.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label2
             // 
@@ -134,6 +137,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(204, 31);
             this.tbName.TabIndex = 3;
+            this.tbName.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbGender
             // 
@@ -141,6 +145,7 @@
             this.tbGender.Name = "tbGender";
             this.tbGender.Size = new System.Drawing.Size(212, 31);
             this.tbGender.TabIndex = 4;
+            this.tbGender.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbOid
             // 
@@ -148,6 +153,7 @@
             this.tbOid.Name = "tbOid";
             this.tbOid.Size = new System.Drawing.Size(134, 31);
             this.tbOid.TabIndex = 6;
+            this.tbOid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label4
             // 
@@ -164,6 +170,7 @@
             this.tbAdj.Name = "tbAdj";
             this.tbAdj.Size = new System.Drawing.Size(139, 31);
             this.tbAdj.TabIndex = 5;
+            this.tbAdj.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbAffinity
             // 
@@ -171,6 +178,7 @@
             this.tbAffinity.Name = "tbAffinity";
             this.tbAffinity.Size = new System.Drawing.Size(137, 31);
             this.tbAffinity.TabIndex = 7;
+            this.tbAffinity.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tb_pupilColor
             // 
@@ -178,6 +186,7 @@
             this.tb_pupilColor.Name = "tb_pupilColor";
             this.tb_pupilColor.Size = new System.Drawing.Size(103, 31);
             this.tb_pupilColor.TabIndex = 10;
+            this.tb_pupilColor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbIrisColor
             // 
@@ -185,6 +194,7 @@
             this.tbIrisColor.Name = "tbIrisColor";
             this.tbIrisColor.Size = new System.Drawing.Size(134, 31);
             this.tbIrisColor.TabIndex = 9;
+            this.tbIrisColor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbEyeColor
             // 
@@ -192,6 +202,7 @@
             this.tbEyeColor.Name = "tbEyeColor";
             this.tbEyeColor.Size = new System.Drawing.Size(121, 31);
             this.tbEyeColor.TabIndex = 8;
+            this.tbEyeColor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label5
             // 
@@ -235,6 +246,7 @@
             this.tbEyeMod.Name = "tbEyeMod";
             this.tbEyeMod.Size = new System.Drawing.Size(422, 31);
             this.tbEyeMod.TabIndex = 11;
+            this.tbEyeMod.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label9
             // 
@@ -269,6 +281,7 @@
             this.tbAccent1.Name = "tbAccent1";
             this.tbAccent1.Size = new System.Drawing.Size(98, 31);
             this.tbAccent1.TabIndex = 14;
+            this.tbAccent1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbPrimaryColor
             // 
@@ -276,6 +289,7 @@
             this.tbPrimaryColor.Name = "tbPrimaryColor";
             this.tbPrimaryColor.Size = new System.Drawing.Size(95, 31);
             this.tbPrimaryColor.TabIndex = 13;
+            this.tbPrimaryColor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label11
             // 
@@ -293,6 +307,7 @@
             this.tbAccent2.Name = "tbAccent2";
             this.tbAccent2.Size = new System.Drawing.Size(122, 31);
             this.tbAccent2.TabIndex = 15;
+            this.tbAccent2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label13
             // 
@@ -311,6 +326,7 @@
             this.tbPose1.Size = new System.Drawing.Size(184, 31);
             this.tbPose1.TabIndex = 17;
             this.tbPose1.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
+            this.tbPose1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label14
             // 
@@ -327,6 +343,7 @@
             this.tbPose2.Name = "tbPose2";
             this.tbPose2.Size = new System.Drawing.Size(212, 31);
             this.tbPose2.TabIndex = 18;
+            this.tbPose2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label15
             // 
@@ -343,6 +360,7 @@
             this.tbView.Name = "tbView";
             this.tbView.Size = new System.Drawing.Size(483, 31);
             this.tbView.TabIndex = 19;
+            this.tbView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label16
             // 
@@ -359,6 +377,7 @@
             this.tbQuality.Name = "tbQuality";
             this.tbQuality.Size = new System.Drawing.Size(486, 31);
             this.tbQuality.TabIndex = 20;
+            this.tbQuality.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // tbWearing
             // 
@@ -367,6 +386,7 @@
             this.tbWearing.Name = "tbWearing";
             this.tbWearing.Size = new System.Drawing.Size(486, 115);
             this.tbWearing.TabIndex = 12;
+            this.tbWearing.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // label17
             // 
@@ -382,7 +402,7 @@
             this.button1.Location = new System.Drawing.Point(1033, 44);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 34);
-            this.button1.TabIndex = 38;
+            this.button1.TabIndex = 1;
             this.button1.Text = "Load";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -422,6 +442,7 @@
             this.tbMisc.Name = "tbMisc";
             this.tbMisc.Size = new System.Drawing.Size(478, 31);
             this.tbMisc.TabIndex = 16;
+            this.tbMisc.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
             // pnlImages
             // 
@@ -486,11 +507,22 @@
             this.tbText.Size = new System.Drawing.Size(1118, 121);
             this.tbText.TabIndex = 47;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1036, 782);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(112, 34);
+            this.button6.TabIndex = 48;
+            this.button6.Text = "Val";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2342, 899);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.tbText);
             this.Controls.Add(this.btnApplyAll);
             this.Controls.Add(this.button5);
@@ -542,6 +574,9 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,5 +633,6 @@
         private Button button5;
         private Button btnApplyAll;
         private TextBox tbText;
+        private Button button6;
     }
 }

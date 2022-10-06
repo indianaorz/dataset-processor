@@ -13,6 +13,7 @@ namespace dataset_processor
     public partial class Form1 : Form
     {
         int m_index = 1;
+        string m_filename = "";
         public Form1()
         {
             InitializeComponent();
@@ -99,7 +100,7 @@ namespace dataset_processor
                 }
                 Save();
             }
-            
+
             pnlImages.Controls.Clear();
 
             var metadatastring = System.IO.File.ReadAllText(textBox1.Text + "metadata.jsonl");
@@ -148,6 +149,7 @@ namespace dataset_processor
             var current = m_metadata[m_index - 1];
 
             label1.Image = Image.FromFile(textBox1.Text + current.file_name);
+            m_filename = current.file_name;
             if (string.IsNullOrEmpty(current.type))
             {
                 return;
@@ -184,7 +186,7 @@ namespace dataset_processor
 
             var newData = new DataRecord()
             {
-                file_name = m_index.ToString().PadLeft(4, '0') + ".png",
+                file_name = (!string.IsNullOrEmpty(m_filename)) ? m_filename : m_index.ToString().PadLeft(4, '0') + ".png",
                 type = tbClass.Text.Trim().ToLower(),
                 name = tbName.Text.Trim().ToLower(),
                 gender = tbGender.Text.Trim().ToLower(),

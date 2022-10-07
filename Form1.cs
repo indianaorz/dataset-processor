@@ -97,8 +97,29 @@ namespace dataset_processor
                     {
                         file_name = file.Name
                     };
+
+                    if (file.Name.Contains('_'))
+                    {
+                        var name = "";
+                        var split = file.Name.Split('_');
+                        foreach (var s in split)
+                        {
+                            int.TryParse(s, out int value);
+                            if (s != "b"
+                                && value <= 0)
+                            {
+                                name += s + " ";
+                                name = name.Replace(".png", "");
+                            }
+                        }
+                        name = name.Trim();
+                        dataRecord.name = name;
+                    }
+
+
                     m_metadata.Add(dataRecord);
                 }
+                m_filename = m_metadata[0].file_name;
                 Save();
             }
 

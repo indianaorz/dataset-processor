@@ -91,6 +91,7 @@
             this.cbView = new System.Windows.Forms.CheckBox();
             this.cbQuality = new System.Windows.Forms.CheckBox();
             this.btnApply = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // imageList1
@@ -638,11 +639,22 @@
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(22, 722);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(212, 34);
+            this.button7.TabIndex = 61;
+            this.button7.Text = "Auto Color";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2342, 899);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.cbQuality);
             this.Controls.Add(this.cbView);
@@ -779,5 +791,6 @@
         private CheckBox cbView;
         private CheckBox cbQuality;
         private Button btnApply;
+        private Button button7;
     }
 }

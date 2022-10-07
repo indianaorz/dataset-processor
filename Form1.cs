@@ -17,7 +17,7 @@ namespace dataset_processor
         public Form1()
         {
             InitializeComponent();
-            textBox1.Text = "C:\\Users\\Lee\\FFCO\\ai\\datasets\\chao\\set\\";
+            textBox1.Text = "C:\\Users\\Lee\\FFCO\\ai\\datasets\\bestiaryhk\\set\\";
         }
 
 
@@ -410,7 +410,194 @@ namespace dataset_processor
                 case Keys.Up:
                     button3_Click(sender, e);
                     break;
+                case Keys.PageDown:
+                    AutoColor(m_metadata[m_index - 1]);
+                    break;
             }
+        }
+
+        private void AutoColor(DataRecord data)
+        {
+            var myBitmap = new Bitmap(textBox1.Text + data.file_name);
+
+            int red = 0;
+            int orange = 0;
+            int yellow = 0;
+            int green = 0;
+            int teal = 0;
+            int aqua = 0;
+            int blue = 0;
+            int indigo = 0;
+            int purple = 0;
+            int violet = 0;
+            int pink = 0;
+            SortedDictionary<string, int> colorBalance = new SortedDictionary<string, int>();
+            colorBalance.Add("red", 0);
+            colorBalance.Add("orange", 0);
+            colorBalance.Add("yellow", 0);
+            colorBalance.Add("green", 0);
+            colorBalance.Add("teal", 0);
+            colorBalance.Add("aqua", 0);
+            colorBalance.Add("blue", 0);
+            colorBalance.Add("indigo", 0);
+            colorBalance.Add("purple", 0);
+            colorBalance.Add("violet", 0);
+            colorBalance.Add("pink", 0);
+            colorBalance.Add("white", 0);
+            colorBalance.Add("black", 0);
+            colorBalance.Add("tan", 0);
+            colorBalance.Add("grey", 0);
+            colorBalance.Add("brown", 0);
+            for (int x = 0; x < myBitmap.Width; x++)
+            {
+                for (int y = 0; y < myBitmap.Height; y++)
+                {
+                    Color pixelColor = myBitmap.GetPixel(x, y);
+                    if (pixelColor.GetBrightness() > .95f
+                        && pixelColor.GetSaturation() < .1f)
+                    {
+                        continue;
+                    }
+                    if (pixelColor.GetBrightness() < .01f
+                        && pixelColor.GetSaturation() < .01f)
+                    {
+                        colorBalance["black"]++;
+                        continue;
+                    }
+
+                    var h = pixelColor.GetHue();
+                    var s = pixelColor.GetSaturation();
+                    var l = pixelColor.GetBrightness();
+                    if (s < .3f && l > .65f)
+                    {
+                        colorBalance["grey"]++;
+                    }
+                    if (h >= 0
+                        && h <= 25)
+                    {
+                        if (l < .2f)
+                        {
+                            colorBalance["brown"]++;
+                        }
+                        if (l > .4f
+                            && s < .7f)
+                        {
+                            colorBalance["tan"]++;
+                        }
+                        else
+                        {
+                            //red
+                            colorBalance["red"]++;
+                        }
+                    }
+                    else if (h >= 25
+                        && h <= 50)
+                    {
+                        if (l > .8f
+                            && s < .3f)
+                        {
+                            colorBalance["tan"]++;
+                        }
+                        else
+                        {
+                            //orange
+                            colorBalance["orange"]++;
+                        }
+                    }
+                    else if (h >= 50
+                        && h <= 90)
+                    {
+                        if (l > .9f
+                            && s < .2f)
+                        {
+                            colorBalance["tan"]++;
+                        }
+                        else
+                        {
+                            //yellow
+                            colorBalance["yellow"]++;
+                        }
+                    }
+                    else if (h >= 90
+                        && h <= 130)
+                    {
+                        //green
+                        colorBalance["green"]++;
+                    }
+                    else if (h >= 130
+                        && h <= 160)
+                    {
+                        //teal
+                        colorBalance["teal"]++;
+                    }
+                    else if (h >= 160
+                        && h <= 180)
+                    {
+                        //aqua
+                        colorBalance["aqua"]++;
+                    }
+                    else if (h >= 180
+                        && h <= 200)
+                    {
+                        //blue
+                        colorBalance["blue"]++;
+                    }
+                    else if (h >= 200
+                        && h <= 240)
+                    {
+                        //indigo
+                        colorBalance["indigo"]++;
+                    }
+                    else if (h >= 260
+                        && h <= 280)
+                    {
+                        //
+                        //violet
+                        if (s > .8f && l > .5f)
+                        {
+                            colorBalance["pink"]++;
+                        }
+                        else
+                        {
+                            colorBalance["purple"]++;
+                        }
+                    }
+                    else if (h >= 280
+                        && h <= 320)
+                    {
+                        //violet
+                        if (s > .8f && l > .5f)
+                        {
+                            colorBalance["pink"]++;
+                        }
+                        else
+                        {
+                            colorBalance["violet"]++;
+                        }
+                    }
+                    else if (h >= 320
+                        && h <= 360)
+                    {
+                        if (l < .5)
+                        {
+                            colorBalance["brown"]++;
+                        }
+                        else
+                        {
+                            //pink
+                            colorBalance["pink"]++;
+                        }
+                    }
+                    // things we do with pixelColor
+                }
+            }
+
+            var sortedDict = from entry in colorBalance orderby entry.Value descending select entry;
+            var primary = sortedDict.ElementAt(0);
+            var secondary = sortedDict.ElementAt(1);
+            tbPrimaryColor.Text = primary.Key.ToString();
+            tbAccent1.Text = secondary.Key.ToString();
+
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -518,6 +705,11 @@ namespace dataset_processor
             };
 
             File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AutoColor(m_metadata[m_index - 1]);
         }
     }
 }

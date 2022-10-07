@@ -120,7 +120,17 @@ namespace dataset_processor
                     m_metadata.Add(dataRecord);
                 }
                 m_filename = m_metadata[0].file_name;
-                Save();
+
+
+                var output = "";
+                foreach (var data in m_metadata)
+                {
+                    output += JsonConvert.SerializeObject(data) + "\n";
+                };
+
+                File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
+
+                //Save();
             }
 
             pnlImages.Controls.Clear();
@@ -172,10 +182,10 @@ namespace dataset_processor
 
             label1.Image = Image.FromFile(textBox1.Text + current.file_name);
             m_filename = current.file_name;
-            if (string.IsNullOrEmpty(current.type))
-            {
-                return;
-            }
+            //if (string.IsNullOrEmpty(current.type))
+            //{
+            //    return;
+            //}
             if (t_forceNoLoad)
             {
                 return;

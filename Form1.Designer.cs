@@ -79,6 +79,18 @@
             this.btnApplyAll = new System.Windows.Forms.Button();
             this.tbText = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.cbClass = new System.Windows.Forms.CheckBox();
+            this.cbNameGender = new System.Windows.Forms.CheckBox();
+            this.cbDesc = new System.Windows.Forms.CheckBox();
+            this.cbEyes = new System.Windows.Forms.CheckBox();
+            this.cbEyeMod = new System.Windows.Forms.CheckBox();
+            this.cbWearing = new System.Windows.Forms.CheckBox();
+            this.cbColors = new System.Windows.Forms.CheckBox();
+            this.cbColorMisc = new System.Windows.Forms.CheckBox();
+            this.cbPose = new System.Windows.Forms.CheckBox();
+            this.cbView = new System.Windows.Forms.CheckBox();
+            this.cbQuality = new System.Windows.Forms.CheckBox();
+            this.btnApply = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // imageList1
@@ -90,7 +102,7 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(609, 115);
+            this.label1.Location = new System.Drawing.Point(676, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(512, 512);
             this.label1.TabIndex = 0;
@@ -109,7 +121,7 @@
             // 
             this.tbClass.Location = new System.Drawing.Point(157, 115);
             this.tbClass.Name = "tbClass";
-            this.tbClass.Size = new System.Drawing.Size(422, 31);
+            this.tbClass.Size = new System.Drawing.Size(445, 31);
             this.tbClass.TabIndex = 2;
             this.tbClass.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -143,7 +155,7 @@
             // 
             this.tbGender.Location = new System.Drawing.Point(367, 171);
             this.tbGender.Name = "tbGender";
-            this.tbGender.Size = new System.Drawing.Size(212, 31);
+            this.tbGender.Size = new System.Drawing.Size(235, 31);
             this.tbGender.TabIndex = 4;
             this.tbGender.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -176,7 +188,7 @@
             // 
             this.tbAffinity.Location = new System.Drawing.Point(442, 230);
             this.tbAffinity.Name = "tbAffinity";
-            this.tbAffinity.Size = new System.Drawing.Size(137, 31);
+            this.tbAffinity.Size = new System.Drawing.Size(160, 31);
             this.tbAffinity.TabIndex = 7;
             this.tbAffinity.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -184,7 +196,7 @@
             // 
             this.tb_pupilColor.Location = new System.Drawing.Point(480, 288);
             this.tb_pupilColor.Name = "tb_pupilColor";
-            this.tb_pupilColor.Size = new System.Drawing.Size(103, 31);
+            this.tb_pupilColor.Size = new System.Drawing.Size(122, 31);
             this.tb_pupilColor.TabIndex = 10;
             this.tb_pupilColor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -244,7 +256,7 @@
             // 
             this.tbEyeMod.Location = new System.Drawing.Point(154, 329);
             this.tbEyeMod.Name = "tbEyeMod";
-            this.tbEyeMod.Size = new System.Drawing.Size(422, 31);
+            this.tbEyeMod.Size = new System.Drawing.Size(448, 31);
             this.tbEyeMod.TabIndex = 11;
             this.tbEyeMod.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -341,7 +353,7 @@
             // 
             this.tbPose2.Location = new System.Drawing.Point(367, 596);
             this.tbPose2.Name = "tbPose2";
-            this.tbPose2.Size = new System.Drawing.Size(212, 31);
+            this.tbPose2.Size = new System.Drawing.Size(235, 31);
             this.tbPose2.TabIndex = 18;
             this.tbPose2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -358,7 +370,7 @@
             // 
             this.tbView.Location = new System.Drawing.Point(93, 635);
             this.tbView.Name = "tbView";
-            this.tbView.Size = new System.Drawing.Size(483, 31);
+            this.tbView.Size = new System.Drawing.Size(509, 31);
             this.tbView.TabIndex = 19;
             this.tbView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -375,7 +387,7 @@
             // 
             this.tbQuality.Location = new System.Drawing.Point(93, 672);
             this.tbQuality.Name = "tbQuality";
-            this.tbQuality.Size = new System.Drawing.Size(486, 31);
+            this.tbQuality.Size = new System.Drawing.Size(509, 31);
             this.tbQuality.TabIndex = 20;
             this.tbQuality.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -384,7 +396,7 @@
             this.tbWearing.Location = new System.Drawing.Point(93, 381);
             this.tbWearing.Multiline = true;
             this.tbWearing.Name = "tbWearing";
-            this.tbWearing.Size = new System.Drawing.Size(486, 115);
+            this.tbWearing.Size = new System.Drawing.Size(509, 115);
             this.tbWearing.TabIndex = 12;
             this.tbWearing.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -409,7 +421,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1009, 652);
+            this.button2.Location = new System.Drawing.Point(1076, 652);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 34);
             this.button2.TabIndex = 21;
@@ -419,7 +431,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(609, 652);
+            this.button3.Location = new System.Drawing.Point(676, 652);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(112, 34);
             this.button3.TabIndex = 40;
@@ -440,7 +452,7 @@
             // 
             this.tbMisc.Location = new System.Drawing.Point(93, 559);
             this.tbMisc.Name = "tbMisc";
-            this.tbMisc.Size = new System.Drawing.Size(478, 31);
+            this.tbMisc.Size = new System.Drawing.Size(509, 31);
             this.tbMisc.TabIndex = 16;
             this.tbMisc.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             // 
@@ -480,7 +492,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(609, 702);
+            this.button5.Location = new System.Drawing.Point(676, 702);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(200, 34);
             this.button5.TabIndex = 22;
@@ -491,7 +503,7 @@
             // btnApplyAll
             // 
             this.btnApplyAll.ForeColor = System.Drawing.Color.Black;
-            this.btnApplyAll.Location = new System.Drawing.Point(921, 702);
+            this.btnApplyAll.Location = new System.Drawing.Point(988, 702);
             this.btnApplyAll.Name = "btnApplyAll";
             this.btnApplyAll.Size = new System.Drawing.Size(200, 34);
             this.btnApplyAll.TabIndex = 22;
@@ -517,11 +529,132 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // cbClass
+            // 
+            this.cbClass.AutoSize = true;
+            this.cbClass.Location = new System.Drawing.Point(617, 121);
+            this.cbClass.Name = "cbClass";
+            this.cbClass.Size = new System.Drawing.Size(22, 21);
+            this.cbClass.TabIndex = 49;
+            this.cbClass.UseVisualStyleBackColor = true;
+            // 
+            // cbNameGender
+            // 
+            this.cbNameGender.AutoSize = true;
+            this.cbNameGender.Location = new System.Drawing.Point(617, 178);
+            this.cbNameGender.Name = "cbNameGender";
+            this.cbNameGender.Size = new System.Drawing.Size(22, 21);
+            this.cbNameGender.TabIndex = 50;
+            this.cbNameGender.UseVisualStyleBackColor = true;
+            // 
+            // cbDesc
+            // 
+            this.cbDesc.AutoSize = true;
+            this.cbDesc.Location = new System.Drawing.Point(617, 236);
+            this.cbDesc.Name = "cbDesc";
+            this.cbDesc.Size = new System.Drawing.Size(22, 21);
+            this.cbDesc.TabIndex = 51;
+            this.cbDesc.UseVisualStyleBackColor = true;
+            // 
+            // cbEyes
+            // 
+            this.cbEyes.AutoSize = true;
+            this.cbEyes.Location = new System.Drawing.Point(617, 291);
+            this.cbEyes.Name = "cbEyes";
+            this.cbEyes.Size = new System.Drawing.Size(22, 21);
+            this.cbEyes.TabIndex = 52;
+            this.cbEyes.UseVisualStyleBackColor = true;
+            // 
+            // cbEyeMod
+            // 
+            this.cbEyeMod.AutoSize = true;
+            this.cbEyeMod.Location = new System.Drawing.Point(617, 335);
+            this.cbEyeMod.Name = "cbEyeMod";
+            this.cbEyeMod.Size = new System.Drawing.Size(22, 21);
+            this.cbEyeMod.TabIndex = 53;
+            this.cbEyeMod.UseVisualStyleBackColor = true;
+            // 
+            // cbWearing
+            // 
+            this.cbWearing.AutoSize = true;
+            this.cbWearing.Location = new System.Drawing.Point(617, 388);
+            this.cbWearing.Name = "cbWearing";
+            this.cbWearing.Size = new System.Drawing.Size(22, 21);
+            this.cbWearing.TabIndex = 54;
+            this.cbWearing.UseVisualStyleBackColor = true;
+            // 
+            // cbColors
+            // 
+            this.cbColors.AutoSize = true;
+            this.cbColors.Location = new System.Drawing.Point(617, 523);
+            this.cbColors.Name = "cbColors";
+            this.cbColors.Size = new System.Drawing.Size(22, 21);
+            this.cbColors.TabIndex = 55;
+            this.cbColors.UseVisualStyleBackColor = true;
+            // 
+            // cbColorMisc
+            // 
+            this.cbColorMisc.AutoSize = true;
+            this.cbColorMisc.Location = new System.Drawing.Point(617, 566);
+            this.cbColorMisc.Name = "cbColorMisc";
+            this.cbColorMisc.Size = new System.Drawing.Size(22, 21);
+            this.cbColorMisc.TabIndex = 56;
+            this.cbColorMisc.UseVisualStyleBackColor = true;
+            // 
+            // cbPose
+            // 
+            this.cbPose.AutoSize = true;
+            this.cbPose.Location = new System.Drawing.Point(617, 603);
+            this.cbPose.Name = "cbPose";
+            this.cbPose.Size = new System.Drawing.Size(22, 21);
+            this.cbPose.TabIndex = 57;
+            this.cbPose.UseVisualStyleBackColor = true;
+            // 
+            // cbView
+            // 
+            this.cbView.AutoSize = true;
+            this.cbView.Location = new System.Drawing.Point(617, 642);
+            this.cbView.Name = "cbView";
+            this.cbView.Size = new System.Drawing.Size(22, 21);
+            this.cbView.TabIndex = 58;
+            this.cbView.UseVisualStyleBackColor = true;
+            // 
+            // cbQuality
+            // 
+            this.cbQuality.AutoSize = true;
+            this.cbQuality.Location = new System.Drawing.Point(617, 678);
+            this.cbQuality.Name = "cbQuality";
+            this.cbQuality.Size = new System.Drawing.Size(22, 21);
+            this.cbQuality.TabIndex = 59;
+            this.cbQuality.UseVisualStyleBackColor = true;
+            // 
+            // btnApply
+            // 
+            this.btnApply.Location = new System.Drawing.Point(427, 722);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(212, 34);
+            this.btnApply.TabIndex = 60;
+            this.btnApply.Text = "Apply Checked To All";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2342, 899);
+            this.Controls.Add(this.btnApply);
+            this.Controls.Add(this.cbQuality);
+            this.Controls.Add(this.cbView);
+            this.Controls.Add(this.cbPose);
+            this.Controls.Add(this.cbColorMisc);
+            this.Controls.Add(this.cbColors);
+            this.Controls.Add(this.cbWearing);
+            this.Controls.Add(this.cbEyeMod);
+            this.Controls.Add(this.cbEyes);
+            this.Controls.Add(this.cbDesc);
+            this.Controls.Add(this.cbNameGender);
+            this.Controls.Add(this.cbClass);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.tbText);
             this.Controls.Add(this.btnApplyAll);
@@ -634,5 +767,17 @@
         private Button btnApplyAll;
         private TextBox tbText;
         private Button button6;
+        private CheckBox cbClass;
+        private CheckBox cbNameGender;
+        private CheckBox cbDesc;
+        private CheckBox cbEyes;
+        private CheckBox cbEyeMod;
+        private CheckBox cbWearing;
+        private CheckBox cbColors;
+        private CheckBox cbColorMisc;
+        private CheckBox cbPose;
+        private CheckBox cbView;
+        private CheckBox cbQuality;
+        private Button btnApply;
     }
 }

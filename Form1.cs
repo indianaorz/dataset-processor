@@ -201,7 +201,6 @@ namespace dataset_processor
             tbIrisColor.Text = current.iris;
             tb_pupilColor.Text = current.pupils;
             tbWearing.Text = current.wearing;
-            tbMisc.Text = current.colors;
             tbPrimaryColor.Text = current.primary;
             tbAccent1.Text = current.accent;
             tbAccent2.Text = current.background;
@@ -240,6 +239,21 @@ namespace dataset_processor
                 quality = tbQuality.Text.Trim().ToLower()
             };
 
+            SetTextField(newData);
+
+            m_metadata[m_index - 1] = newData;
+
+            var output = "";
+            foreach (var data in m_metadata)
+            {
+                output += JsonConvert.SerializeObject(data) + "\n";
+            };
+
+            File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
+        }
+
+        private static void SetTextField(DataRecord newData)
+        {
             var poseText = "";
             if (!string.IsNullOrEmpty(newData.pose)) { poseText += "pose_" + newData.pose; }
             if (!string.IsNullOrEmpty(newData.pose2)) { poseText += " pose_" + newData.pose2; }
@@ -268,16 +282,6 @@ namespace dataset_processor
                 + poseText + ", "
                 + newData.view + ", "
                 + newData.quality;
-
-            m_metadata[m_index - 1] = newData;
-
-            var output = "";
-            foreach (var data in m_metadata)
-            {
-                output += JsonConvert.SerializeObject(data) + "\n";
-            };
-
-            File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -407,6 +411,113 @@ namespace dataset_processor
                     button3_Click(sender, e);
                     break;
             }
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            if (cbClass.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.type = tbClass.Text;
+                }
+            }
+            if (cbNameGender.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.name = tbName.Text;
+                    data.gender = tbGender.Text;
+                }
+            }
+            if (cbDesc.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.descriptor = tbAdj.Text;
+                    data.form = tbOid.Text;
+                    data.affinity = tbAffinity.Text;
+                }
+            }
+            if (cbEyes.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.eyeColor = tbEyeColor.Text;
+                    data.iris = tbIrisColor.Text;
+                    data.pupils = tb_pupilColor.Text;
+                }
+            }
+            if (cbEyeMod.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.eyes = tbEyeMod.Text;
+                }
+            }
+            if (cbWearing.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.wearing = tbWearing.Text;
+                }
+            }
+            if (cbColors.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.primary = tbPrimaryColor.Text;
+                    data.accent = tbAccent1.Text;
+                    data.background = tbAccent2.Text;
+                }
+            }
+            if (cbColorMisc.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.colors = tbMisc.Text;
+                }
+            }
+            if (cbPose.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.pose = tbPose1.Text;
+                    data.pose2 = tbPose2.Text;
+                }
+            }
+            if (cbView.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.view = tbView.Text;
+                }
+            }
+            if (cbQuality.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.quality = tbQuality.Text;
+                }
+            }
+
+            SaveAll();
+        }
+
+        private void SaveAll()
+        {
+            foreach (var data in m_metadata)
+            {
+                SetTextField(data);
+            }
+
+            var output = "";
+            foreach (var data in m_metadata)
+            {
+                output += JsonConvert.SerializeObject(data) + "\n";
+            };
+
+            File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
         }
     }
 }

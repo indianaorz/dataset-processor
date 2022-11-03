@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Net;
+using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace dataset_processor
 {
@@ -44,6 +47,7 @@ namespace dataset_processor
             public string view;
             public string quality;
             public string text;
+            public string guid;
         }
 
 
@@ -86,39 +90,10 @@ namespace dataset_processor
 
             if (!File.Exists(textBox1.Text + "metadata.jsonl"))
             {
-                m_metadata.Clear();
-                DirectoryInfo d = new DirectoryInfo(textBox1.Text); //Assuming Test is your Folder
+                m_metadata.Clear();//Getting Text files
 
-                FileInfo[] Files = d.GetFiles("*.png"); //Getting Text files
+                RenameFromFileName();
 
-                foreach (FileInfo file in Files)
-                {
-                    var dataRecord = new DataRecord()
-                    {
-                        file_name = file.Name
-                    };
-
-                    if (file.Name.Contains('_'))
-                    {
-                        var name = "";
-                        var split = file.Name.Split('_');
-                        foreach (var s in split)
-                        {
-                            int.TryParse(s, out int value);
-                            if (s != "b"
-                                && value <= 0)
-                            {
-                                name += s + " ";
-                                name = name.Replace(".png", "");
-                            }
-                        }
-                        name = name.Trim();
-                        dataRecord.name = name;
-                    }
-
-
-                    m_metadata.Add(dataRecord);
-                }
                 m_filename = m_metadata[0].file_name;
 
 
@@ -132,6 +107,7 @@ namespace dataset_processor
 
                 //Save();
             }
+
 
             pnlImages.Controls.Clear();
 
@@ -166,8 +142,115 @@ namespace dataset_processor
                     }
                 }
             }
+
+
+            ////special append logic
+            //if (File.Exists(textBox1.Text + "metadata.jsonl"))
+            //{
+            //    DirectoryInfo d = new DirectoryInfo(textBox1.Text); //Assuming Test is your Folder
+
+            //    FileInfo[] Files = d.GetFiles("*.png"); //Getting Text files
+
+            //    foreach (FileInfo file in Files)
+            //    {
+
+            //        var dataRecord = new DataRecord()
+            //        {
+            //            file_name = file.Name
+            //        };
+
+            //        if (file != null && file.Name.Contains('-'))
+            //        {
+            //            var name = "";
+            //            var split = file.Name.Split('-');
+            //            if(split.Length > 1)
+            //            {
+            //                var orig = m_metadata.Where(o => o.file_name == split[0] + ".png").First();
+            //                var json = JsonConvert.SerializeObject(orig);
+            //                dataRecord = JsonConvert.DeserializeObject<DataRecord>(json);
+            //                if (split[1] == "1.png")
+            //                {
+            //                    dataRecord.view = "view_three_quarter";
+            //                }
+            //                if (split[1] == "2.png")
+            //                {
+            //                    dataRecord.view = "view_side";
+            //                }
+            //                if (split[1] == "3.png")
+            //                {
+            //                    dataRecord.view = "view_three_quarter_back";
+            //                    dataRecord.eyes = "no_eyes";
+            //                }
+            //                name = name.Trim();
+            //                dataRecord.file_name = file.Name;
+
+
+            //                m_metadata.Insert(m_metadata.IndexOf(orig), dataRecord);
+            //            }
+            //        }
+            //    }
+            //    m_filename = m_metadata[0].file_name;
+
+
+            //    var output = "";
+            //    foreach (var data in m_metadata)
+            //    {
+            //        output += JsonConvert.SerializeObject(data) + "\n";
+            //    };
+
+            //    File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
+
+            //    //Save();
+            //}
             LoadIndex(m_index);
 
+        }
+
+        private void RenameFromFileName()
+        {
+            DirectoryInfo d = new DirectoryInfo(textBox1.Text); //Assuming Test is your Folder
+
+            var Files = d.GetFiles("*.png").ToList();
+
+            bool metaDataExist = false;
+            if (m_metadata.Count > 0)
+            {
+                metaDataExist = true;
+            }
+            foreach (FileInfo file in Files)
+            {
+                var dataRecord = new DataRecord()
+                {
+                    file_name = file.Name
+                };
+
+                if (metaDataExist)
+                {
+                    dataRecord = m_metadata[Files.IndexOf(file)];
+                }
+
+                if (file.Name.Contains('_')
+                    || metaDataExist && string.IsNullOrEmpty(dataRecord.name))
+                {
+                    var name = "";
+                    var split = file.Name.Split('_');
+                    foreach (var s in split)
+                    {
+                        int.TryParse(s, out int value);
+                        if (s != "b"
+                            && value <= 0)
+                        {
+                            name += s + " ";
+                            name = name.Replace(".png", "");
+                        }
+                    }
+                    name = name.Trim();
+                    dataRecord.name = name;
+                }
+
+
+                m_metadata.Add(dataRecord);
+            }
         }
 
         private void PicBx_Click(object? sender, EventArgs e)
@@ -209,6 +292,7 @@ namespace dataset_processor
             tbPose2.Text = current.pose2;
             tbView.Text = current.view;
             tbQuality.Text = current.quality;
+            tbGuid.Text = current.guid;
             tbText.Text = current.text;
         }
 
@@ -236,7 +320,8 @@ namespace dataset_processor
                 pose = tbPose1.Text.Trim().ToLower(),
                 pose2 = tbPose2.Text.Trim().ToLower(),
                 view = tbView.Text.Trim().ToLower(),
-                quality = tbQuality.Text.Trim().ToLower()
+                quality = tbQuality.Text.Trim().ToLower(),
+                guid = tbGuid.Text.Trim().ToLower()
             };
 
             SetTextField(newData);
@@ -281,7 +366,8 @@ namespace dataset_processor
                 + colorText + ", "
                 + poseText + ", "
                 + newData.view + ", "
-                + newData.quality;
+                + newData.quality
+                + ((string.IsNullOrEmpty(newData.guid)) ? "" : " guid_" + newData.guid);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -597,6 +683,8 @@ namespace dataset_processor
             var secondary = sortedDict.ElementAt(1);
             tbPrimaryColor.Text = primary.Key.ToString();
             tbAccent1.Text = secondary.Key.ToString();
+            data.primary = primary.Key.ToString();
+            data.accent = secondary.Key.ToString();
 
         }
 
@@ -687,6 +775,13 @@ namespace dataset_processor
                     data.quality = tbQuality.Text;
                 }
             }
+            if (cbGuid.Checked)
+            {
+                foreach (var data in m_metadata)
+                {
+                    data.guid = tbGuid.Text;
+                }
+            }
 
             SaveAll();
         }
@@ -710,6 +805,165 @@ namespace dataset_processor
         private void button7_Click(object sender, EventArgs e)
         {
             AutoColor(m_metadata[m_index - 1]);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            foreach (var data in m_metadata)
+            {
+                data.guid = Guid.NewGuid().ToString().Replace('-', '_');
+                SetTextField(data);
+            }
+
+            var output = "";
+            foreach (var data in m_metadata)
+            {
+                output += JsonConvert.SerializeObject(data) + "\n";
+            };
+
+            File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
+            foreach (var data in m_metadata)
+            {
+                AutoColor(data);
+                SetTextField(data);
+            }
+            var output = "";
+            foreach (var data in m_metadata)
+            {
+                output += JsonConvert.SerializeObject(data) + "\n";
+            };
+
+            File.WriteAllText(textBox1.Text + "\\metadata.jsonl", output);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            RenameFromFileName();
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            var metadatastring = System.IO.File.ReadAllText(textBox1.Text + "metadata.jsonl");
+
+
+            var lines = metadatastring.Split("\n");
+
+            int y = 0;
+            foreach (var line in lines)
+            {
+                var record = JsonConvert.DeserializeObject<DataRecord>(line);
+                if (record != null)
+                {
+                    m_metadata.Add(record);
+                    var picBx = new PictureBox();
+                    picBx.Image = Image.FromFile(textBox1.Text + record.file_name);
+
+
+                    var width = (int)((picBx.Image.Width / 64) * 64) * 2;
+                    var height = (int)((picBx.Image.Height / 64) * 64) * 2;
+
+                    //width = Math.Min(width, 1600);
+                    //height = Math.Min(height, 1600);
+
+                    byte[] imageArray = System.IO.File.ReadAllBytes(textBox1.Text + record.file_name);
+                    string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
+                    Img2ImgBody body = new Img2ImgBody()
+                    {
+                        init_images = new string[] { "data:image/png;base64," + base64ImageRepresentation },
+                        width = width,
+                        height = height,
+                        cfg_scale = 8,
+                        denoising_strength = .5f,
+                        steps = 40,
+                        sampler_index = "Euler a",
+                        n_iter = 1,
+                        prompt = "bg sotn highres painted background, sotn_style, full_body castlevania, death ,  skeletonoid , skull_face robed_reaper chest_ornament flowing_robe, primary_purple accent_white, kraid alien, legendary reptilian boss, third_eye, corpulent, green reptilian extraterrestrial gigantic spiked_head fangs nose_horn large_claws belly_holes, primary_green accent_yellow"
+                    };
+
+                    var content = JsonConvert.SerializeObject(body);
+
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:7860/sdapi/v1/img2img");
+                    httpWebRequest.ContentType = "application/json";
+                    httpWebRequest.Method = "POST";
+
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        streamWriter.Write(content);
+                    }
+                    try
+                    {
+                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                        {
+                            var result = streamReader.ReadToEnd();
+                            Response res = JsonConvert.DeserializeObject<Response>(result);
+                            int i = 0;
+                            foreach (var img in res.images)
+                            {
+                                string filePath = "output_" + i.ToString() + "_" + record.file_name;
+                                File.WriteAllBytes(filePath, Convert.FromBase64String(img));
+                                ++i;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+        }
+        [Serializable]
+        public class Response
+        {
+            public string[] images;
+        }
+        [Serializable]
+        public class Img2ImgBody
+        {
+            public string[] init_images;
+            public float denoising_strength;
+            public string prompt;
+            public int width;
+            public int height;
+            public float cfg_scale;
+            public int steps;
+            public string mask;
+            public string[] styles;
+            public string sampler_index;
+            public int n_iter;
+        }
+        public string WebPostMethod(string postData, string URL)
+        {
+            string responseFromServer = "";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
+            request.Method = "POST";
+            request.Credentials = CredentialCache.DefaultCredentials;
+            ((HttpWebRequest)request).UserAgent =
+                              "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)";
+            request.Accept = "/";
+            request.UseDefaultCredentials = true;
+            request.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            request.ContentType = "application/json";
+            request.ContentLength = byteArray.Length;
+            Stream dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            WebResponse response = request.GetResponse();
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
         }
     }
 }
